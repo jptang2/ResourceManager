@@ -9,5 +9,5 @@ public:
 	vector<string> m_vResource;
 	bool m_bUseable;	
 };
-aaa°¡°¡
+
 
