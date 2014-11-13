@@ -10,4 +10,5 @@ public:
 	bool m_bUseable;	
 };
 
+aaa
 
