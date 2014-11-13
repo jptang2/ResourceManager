@@ -52,6 +52,10 @@ public:
     };
 	void Notify(TNotifyUI& msg);
 
+	void RefreshTree(bool bAdd, string szNode);
+
+	void RefreshTree(bool bAdd, string szNode,string szParent);
+
 	LRESULT OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	
     LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
@@ -75,6 +79,8 @@ public:
     LRESULT OnSysCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 
     LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+	
 public:
     CPaintManagerUI m_pm;
 	
