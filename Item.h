@@ -10,5 +10,5 @@ public:
 	bool m_bUseable;	
 };
 
-aaabbb
+aaa
 
