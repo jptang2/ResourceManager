@@ -1,11 +1,9 @@
 #ifndef _MainDialog_H_
 #define _MainDialog_H_
 #include "WndShadow.h"
-
-#include <map>
 #include "Item.h"
+#include <map>
 //------------------------------
-
 //-----------------
 
 class MainDialog : public CWindowWnd, public INotifyUI,public IDialogBuilderCallback
@@ -54,7 +52,9 @@ public:
 
 	void RefreshTree(bool bAdd, string szNode);
 
-	void RefreshTree(bool bAdd, string szNode,string szParent);
+	void RefreshTree(bool bAdd, string szNode,CTreeNodeUI* pParent);
+
+	bool SaveToFile();
 
 	LRESULT OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	
@@ -90,13 +90,18 @@ private:
     CButtonUI* m_pRestoreBtn;
     CButtonUI* m_pMinBtn;
 	CButtonUI* m_pClose;
+	CButtonUI* m_pAddItem;
 	CButtonUI* m_pAddNode;
 	CButtonUI* m_pDelNode;
 	CEditUI*   m_pInputNodeText;
 	CTextUI*   m_pCurrentNodeText;
+	CTreeViewUI* m_pTree;
 
 	DWORD m_dwSkinNo;
-	map<string,Item*> m_mapItem;
+	vector<Item*> m_vItem;
     //...
 };
+
+
+
 #endif
