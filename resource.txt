@@ -2,7 +2,3 @@ handgun bullets
 bullets ore
 bombs ore
 turret bullets
-hand bullets aaaa bbb cc d
-aa ee
-m
-88 88

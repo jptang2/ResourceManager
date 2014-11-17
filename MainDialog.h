@@ -56,6 +56,10 @@ public:
 
 	bool SaveToFile();
 
+	bool FindInItems(string str,int& n);
+
+	bool FindInVector(vector<string> vStr,string str,int& n);
+
 	LRESULT OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	
     LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
