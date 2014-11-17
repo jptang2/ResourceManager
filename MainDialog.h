@@ -58,7 +58,7 @@ public:
 
 	bool FindInItems(string str,int& n);
 
-	bool FindInVector(vector<string> vStr,string str,int& n);
+	void DelInItems(string str);
 
 	LRESULT OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 	

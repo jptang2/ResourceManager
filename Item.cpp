@@ -1,13 +1,11 @@
 #include "stdafx.h"
 #include "Item.h"
-
+#include <string>
 
 Item::Item(void)
 {
 	m_szItemName.clear();
-	m_vDepend.clear();
-	m_bUseable = false;
-	m_nCompleteCount = 0;
+	m_vDepend.clear();	
 	m_pUseable = NULL;
 	m_pItem = NULL;
 }
@@ -17,10 +15,6 @@ Item::~Item(void)
 {
 }
 
-int Item::GetNodeCount()
-{
-	return m_nCompleteCount;
-}
 
 std::string Item::GetName()
 {
@@ -29,12 +23,12 @@ std::string Item::GetName()
 
 bool Item::GetUseable()
 {
-	return m_bUseable;
+	return (m_vDepend.size() == m_vCurrent.size());
 }
 
-void Item::SetCompleteCount(int n)
+int Item::GetCompleteCount()
 {
-	m_nCompleteCount = n;
+	return m_vDepend.size();
 }
 
 void Item::SetName(string str)
@@ -42,10 +36,6 @@ void Item::SetName(string str)
 	m_szItemName = str;
 }
 
-void Item::SetUseable(bool bUseable)
-{
-	m_bUseable = bUseable;
-}
 
 CTextUI* Item::GetUseableText()
 {
@@ -65,4 +55,81 @@ CTreeNodeUI* Item::GetItemNode()
 void Item::SetItemNode(CTreeNodeUI* pItem)
 {
 	m_pItem = pItem;
+}
+
+void Item::AddNodeInLoad(string szNode)
+{
+	m_vDepend.push_back(szNode);
+	m_vCurrent.push_back(szNode);
+}
+void Item::AddNodeInUse(string szNode)
+{
+	m_vCurrent.push_back(szNode);
+}
+
+void Item::DelNode(string szNode)
+{	
+	for (vector<string>::iterator it=m_vCurrent.begin();it!=m_vCurrent.end();it++)
+	{	
+		if ((*it) == szNode)
+		{
+			m_vCurrent.erase(it);
+			break;
+		}
+	}	
+}
+
+bool Item::FindInDepends(string szNode,int& n)
+{
+	int nCount = m_vDepend.size();
+	for (int i=0;i<nCount;i++)
+	{
+		if (m_vDepend[i] == szNode)
+		{
+			n = i;
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Item::FindInCurrent(string szNode,int& n)
+{
+	int nCount = m_vCurrent.size();
+	for (int i=0;i<nCount;i++)
+	{
+		if (m_vCurrent[i] == szNode)
+		{
+			n = i;
+			return true;
+		}
+	}
+	return false;
+}
+
+void Item::SetUseableState()
+{
+	if (m_vCurrent.size() < m_vDepend.size())
+	{
+		CTextUI* pUseable = GetUseableText();
+		pUseable->SetText("unusable");				
+		pUseable->SetAttribute("textcolor","#ffff0000");
+	}
+	
+	int nCurrentInDepend = 0;//Õ¼±È
+
+	for (int i=0;i<m_vCurrent.size();i++)
+	{
+		string szCurrent = m_vCurrent[i];
+		for ()
+		{
+		}
+	}
+
+
+
+
+	CTextUI* pUseable = GetUseableText();
+	pUseable->SetText("unusable");				
+	pUseable->SetAttribute("textcolor","#ffff0000");
 }

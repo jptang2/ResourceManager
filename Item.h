@@ -10,17 +10,19 @@ public:
 	void SetName(string str);
 	bool GetUseable();
 	void SetUseable(bool bUseable);
-	void SetCompleteCount(int n);		
+	int GetCompleteCount();			
 	CTextUI* GetUseableText();
 	void SetUseableText(CTextUI* pUseable);
 	CTreeNodeUI* GetItemNode();
 	void SetItemNode(CTreeNodeUI* pItem);
-	void AddNode(string szNode);
+	void AddNodeInLoad(string szNode);
+	void AddNodeInUse(string szNode);
 	void DelNode(string szNode);
+	bool FindInDepends(string szNode,int& n);
+	bool FindInCurrent(string szNode,int& n);
+	void SetUseableState();
 private:
-	string m_szItemName;	
-	bool m_bUseable;	
-	int m_nCompleteCount;
+	string m_szItemName;				
 	CTextUI* m_pUseable;
 	CTreeNodeUI* m_pItem;
 	vector<string> m_vDepend;
