@@ -1,6 +1,6 @@
 #ifndef _MainDialog_H_
 #define _MainDialog_H_
-#include "WndShadow.h"
+
 
 #include "Item.h"
 #include <map>
@@ -11,7 +11,7 @@
 class MainDialog : public CWindowWnd, public INotifyUI,public IDialogBuilderCallback
 {
 public:
-	CWndShadow m_WndShadow;
+
     MainDialog():m_dwSkinNo(0) 
 	{
     };
@@ -99,6 +99,7 @@ private:
 	CButtonUI* m_pAddItem;
 	CButtonUI* m_pAddNode;
 	CButtonUI* m_pDelNode;
+	CButtonUI* m_pSaveAndExit;
 	CEditUI*   m_pInputNodeText;
 	CTextUI*   m_pCurrentNodeText;
 	CTreeViewUI* m_pTree;

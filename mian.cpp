@@ -12,9 +12,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR 
 	
 
 	CPaintManagerUI::SetInstance(hInstance);
-	CWndShadow::Initialize(hInstance);
-	CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath() + _T("skin"));
-//	CPaintManagerUI::SetResourceZip(_T("ResourceManager.zip"));
+
+	CPaintManagerUI::SetResourcePath(CPaintManagerUI::GetInstancePath() );//+ _T("skin")
+	CPaintManagerUI::SetResourceZip(_T("skin.zip"));
 
 	HRESULT Hr = ::CoInitialize(NULL);
 	if( FAILED(Hr) ) return 0;
