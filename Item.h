@@ -9,8 +9,7 @@ public:
 	string GetName();
 	void SetName(string str);
 	bool GetUseable();
-	void SetUseable(bool bUseable);
-	int GetCompleteCount();			
+	void SetUseable(bool bUseable);			
 	CTextUI* GetUseableText();
 	void SetUseableText(CTextUI* pUseable);
 	CTreeNodeUI* GetItemNode();
@@ -18,9 +17,10 @@ public:
 	void AddNodeInLoad(string szNode);
 	void AddNodeInUse(string szNode);
 	void DelNode(string szNode);
-	bool FindInDepends(string szNode,int& n);
-	bool FindInCurrent(string szNode,int& n);
+	bool FindInDepends(string szNode);
+	bool FindInCurrent(string szNode);
 	void SetUseableState();
+	vector<string> GetCurrentNodes();
 private:
 	string m_szItemName;				
 	CTextUI* m_pUseable;

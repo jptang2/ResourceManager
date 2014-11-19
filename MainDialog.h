@@ -1,10 +1,12 @@
 #ifndef _MainDialog_H_
 #define _MainDialog_H_
 #include "WndShadow.h"
+
 #include "Item.h"
 #include <map>
 //------------------------------
 //-----------------
+
 
 class MainDialog : public CWindowWnd, public INotifyUI,public IDialogBuilderCallback
 {
@@ -50,9 +52,9 @@ public:
     };
 	void Notify(TNotifyUI& msg);
 
-	void RefreshTree(bool bAdd, string szNode);
+	void DeleteNodeInTree(string szNode);
 
-	void RefreshTree(bool bAdd, string szNode,CTreeNodeUI* pParent);
+	void AddNodeInTree( string szNode,CTreeNodeUI* pParent);
 
 	bool SaveToFile();
 

@@ -13,12 +13,9 @@
 
 // C 运行时头文件
 #include <stdlib.h>
-#include <malloc.h>
-#include <memory.h>
 #include <tchar.h>
-
 #include <objbase.h>
-
+#include "MyCommon.h"
 
 // TODO: 在此处引用程序需要的其他头文件
 #include "../DuiLib/UIlib.h"

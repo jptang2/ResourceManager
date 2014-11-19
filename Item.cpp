@@ -26,16 +26,10 @@ bool Item::GetUseable()
 	return (m_vDepend.size() == m_vCurrent.size());
 }
 
-int Item::GetCompleteCount()
-{
-	return m_vDepend.size();
-}
-
 void Item::SetName(string str)
 {
 	m_szItemName = str;
 }
-
 
 CTextUI* Item::GetUseableText()
 {
@@ -79,28 +73,28 @@ void Item::DelNode(string szNode)
 	}	
 }
 
-bool Item::FindInDepends(string szNode,int& n)
+bool Item::FindInDepends(string szNode)
 {
 	int nCount = m_vDepend.size();
 	for (int i=0;i<nCount;i++)
 	{
 		if (m_vDepend[i] == szNode)
 		{
-			n = i;
+		//	n = i;
 			return true;
 		}
 	}
 	return false;
 }
 
-bool Item::FindInCurrent(string szNode,int& n)
+bool Item::FindInCurrent(string szNode)
 {
 	int nCount = m_vCurrent.size();
 	for (int i=0;i<nCount;i++)
 	{
 		if (m_vCurrent[i] == szNode)
 		{
-			n = i;
+		//	n = i;
 			return true;
 		}
 	}
@@ -112,24 +106,35 @@ void Item::SetUseableState()
 	if (m_vCurrent.size() < m_vDepend.size())
 	{
 		CTextUI* pUseable = GetUseableText();
-		pUseable->SetText("unusable");				
-		pUseable->SetAttribute("textcolor","#ffff0000");
+		pUseable->SetText(_T("unusable"));				
+		pUseable->SetAttribute(_T("textcolor"),_T("#ffff0000"));
 	}
 	
 	int nCurrentInDepend = 0;//Õ¼±È
 
 	for (int i=0;i<m_vCurrent.size();i++)
-	{
-		string szCurrent = m_vCurrent[i];
-		for ()
-		{
-		}
+	{	
+		bool bFind = FindInDepends(m_vCurrent[i]);
+		if(bFind) nCurrentInDepend++;
 	}
 
+	if (m_vDepend.size() == nCurrentInDepend)
+	{
+		CTextUI* pUseable = GetUseableText();
+		if(NULL == pUseable) return;
+		pUseable->SetText(_T("usable"));				
+		pUseable->SetAttribute(_T("textcolor"),_T("#ff238e23"));
+	}
+	else
+	{
+		CTextUI* pUseable = GetUseableText();
+		if(NULL == pUseable) return;
+		pUseable->SetText(_T("unusable"));				
+		pUseable->SetAttribute(_T("textcolor"),_T("#ffff0000"));
+	}
+}
 
-
-
-	CTextUI* pUseable = GetUseableText();
-	pUseable->SetText("unusable");				
-	pUseable->SetAttribute("textcolor","#ffff0000");
+vector<string> Item::GetCurrentNodes()
+{
+	return m_vCurrent;
 }
