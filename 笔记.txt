@@ -1,0 +1,22 @@
+1.丢类，删ncb文件
+2.Radio1单选，勾Group才能加控制变量
+
+4.::这个符号表示直接调用Win32 API函数,SetWindowPos 不需要传 HWND参数的,而::SetWindowPos是需要传HWND参数用于表示是哪个窗口。（SetWindowPos不接受7个参数而定义就是7个参数）
+5.换光标时，OnSetCursor里的return 要写ture。光标变手，IDC=MAKEINTRESOURCE(32649)
+6.在哪个类用就在哪个类定义对象，用外部定义：view类在view.h中声明extern，在cpp里定义，在构造中=this，构造中写变量初始值。
+7.Getdocument出错，缺“；”是缺doc.h
+8.没有位置的内存泄露，由于接口的析构函数没有设置为虚函数造成的。
+9.没加lib，无法解析的外部。。。
+10.在左移一位后相当于乘2
+---------------
+LPCTSTR不是一个类型，而是两种类型：LPCSTR和LPCWSTR其中之一。会根据你当前程序是否使用UNICODE字符集来变成那二者之一。如果使用UNICODE字符集，则LPCTSTR = LPCWSTR，否则LPCTSTR = LPCSTR。
+
+标准库的std::string转换成LPCSTR很简单：直接调用c_str()即可。例：
+std::string a="abc"; 
+LPCSTR str = a.c_str();
+
+标准库还有一个wstring，代表宽字符的string，std::wstring转换成LPCWSTR也一样很简单：
+std::wstring a = L"abc";
+LPCWSTR str = a.c_str();
+
+如果要是std::string转换成LPCWSTR或者std::wstring转换成LPCSTR那就比较麻烦了，需要调用MultiByteToWideChar或WideCharToMultiByte进行字符集之间的转换。不过大多数时候不需要这种交叉转换，一个程序一般只会使用一种字符集。
