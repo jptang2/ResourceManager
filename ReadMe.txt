@@ -1,6 +1,6 @@
 ﻿Resource Manager
 
-Tang Jian Ping
+JianPing Tang
 
 Resource Manager is an editor of RTS game, you could add a node by pressing the 'add parent' button, a link connect to another node could be added by 'add child' button.If you want to delete a node, press the 'delete node' button, after you delete a node,any node which depends on it will be unusable.
 
